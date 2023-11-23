@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   def index
     @book = Book.new
     @books = Book.all
+    @user = current_user
   end
 
   def show
@@ -9,20 +10,21 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    @user = current_user
   end
   
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
-    redirect_to book_path
+    redirect_to book_path(@book.id)
   end
   
   # 投稿データのストロングパラメータ
   private
 
-  def post_image_params
-    params.require(:book).permit(:shop_name, :image, :caption)
+  def book_params
+    params.require(:book).permit(:book, :title)
   end
   
   
