@@ -6,9 +6,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.new
-    @books = Book.all
-    @user = current_user
+    @book_new = Book.new
+    @book = Book.find(params[:id])
+    @user = @book.user
   end
 
   def edit
@@ -20,11 +20,21 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
-    redirect_to book_path(@book.id)
+    flash[:notice]= "You have created book successfully."
+    redirect_to book_path(@book)
   end
 
   def destroy
-    @user = current_user
+    book = Book.find(params[:id])
+    book.destroy
+    redirect_to  books_path
+  end
+
+  def update
+    book = Book.find(params[:id])
+    book.update(book_params)
+    flash[:notice]= "You have updated book successfully."
+    redirect_to book_path(book.id)
   end
 
   # 投稿データのストロングパラメータ
