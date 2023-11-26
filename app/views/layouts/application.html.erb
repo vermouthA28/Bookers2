@@ -16,7 +16,13 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
 
-            <a href="<%= root_path %>" class="nav-link text-light">Bookers</a>
+
+            <span>
+              <%= link_to root_path, class:"nav-link text-light" do %>
+              Bookers
+              <% end %>
+            </span>
+
 
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
