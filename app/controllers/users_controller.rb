@@ -13,20 +13,23 @@ class UsersController < ApplicationController
 
   end
 
-  def edit
+   def edit
     is_matching_login_user
 
    end
 
 
 
-  def update
+    def update
     @user = current_user
-    @user.update(user_params)
-    flash[:notice]= "You have updated user successfully."
-    redirect_to user_path(@user)
+      if @user.update(user_params)
+      flash[:notice]= "You have updated user successfully."
+      redirect_to user_path(@user)
+      else
+        render :edit
+      end
+    end
 
-  end
 
 
   private
