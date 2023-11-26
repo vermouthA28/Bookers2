@@ -28,11 +28,11 @@
                 <% if @book.user == current_user %>
 
               <td><%= link_to edit_book_path(@book.id), class: "btn btn-sm btn-success" do %>
-               edit<% end %></td>
+               Edit<% end %></td>
 
 
               <td><%= link_to book_path(@book.id), method: :delete, class: "btn btn-sm btn-danger" do %>
-               destroy<% end %></td>
+               Destroy<% end %></td>
 
 
               <% end %>
