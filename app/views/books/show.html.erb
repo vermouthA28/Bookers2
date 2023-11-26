@@ -16,8 +16,11 @@
           <tbody>
             <tr>
 
-              <td><%= image_tag @book.user.get_image(100,100) %></td>
-          </br><td><%= link_to @user.name,user_path(@book.user.id) %></td>
+              <td><%= link_to user_path do %>
+              <%= image_tag @book.user.get_image(100,100) %>
+              <% end %>
+              </br><%= link_to @user.name,user_path(@book.user.id) %></td>
+
               <td><%= link_to @book.title, book_path(@book) %></td>
               <td><%= @book.body %></td>
 

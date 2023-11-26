@@ -1,8 +1,8 @@
 class Book < ApplicationRecord
-  has_one_attached :image 
+  has_one_attached :profile_image
   belongs_to :user
-  
-  
+
+
   validates :title, presence: true
-  validates :body, presence: true
+  validates :body, presence: true, length: { in: 1..200 }
 end
